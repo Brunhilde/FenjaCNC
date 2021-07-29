@@ -1,0 +1,54 @@
+# Betriebsmittel
+# --------------
+setp lut5.estop-btm.function 0x80000000
+
+net in-pressure-before-ok => lut5.estop-btm.in-0
+#net in-pressure-after-ok  => lut5.estop-btm.in-1
+setp lut5.estop-btm.in-1 1
+net in-cooling-ok         => lut5.estop-btm.in-2
+setp lut5.estop-btm.in-3 1
+setp lut5.estop-btm.in-4 1
+
+net estop-btm <= lut5.estop-btm.out
+
+
+# Servos
+# ------
+setp lut5.estop-servo.function 0x80000000
+
+net in-axis-x-ok => lut5.estop-servo.in-0
+net in-axis-z-ok => lut5.estop-servo.in-1
+net in-axis-y-ok => lut5.estop-servo.in-2
+setp lut5.estop-servo.in-3 1
+setp lut5.estop-servo.in-4 1
+
+net estop-servo <= lut5.estop-servo.out
+
+
+# Spindle
+# -------
+setp lut5.estop-spindle.function 0x2
+net estop-watchdog-timeout watchdog.ok-out => lut5.estop-spindle.in-0
+net estop-vfd-error wj200-vfd.0.is-alarm   => lut5.estop-spindle.in-1
+
+net estop-spindle <= lut5.estop-spindle.out
+
+
+# Alle E-Stop Signale kombinieren
+# -------------------------------
+setp lut5.estop.function 0x80000000
+
+net estop-btm     => lut5.estop.in-0
+net estop-servo   => lut5.estop.in-1
+net estop-spindle => lut5.estop.in-2
+# PNOZ
+net estop-ext     => lut5.estop.in-3
+setp lut5.estop.in-4 1
+
+# e-stop loop
+net estop-signal lut5.estop.out => iocontrol.0.emc-enable-in
+
+
+# additional signals
+net estop-signal => not.estop.in
+net estop-active <= not.estop.out

@@ -1,0 +1,81 @@
+# I/O config
+
+# inputs
+#-------
+#---DI-00---
+#---DI-01---
+#---DI-02---
+#---DI-03---
+net in-atc-tool-ok-raw <= hm2_7i76e.0.7i76.0.0.input-03
+#---DI-04---
+net in-atc-tool-open-raw <= hm2_7i76e.0.7i76.0.0.input-04
+#---DI-05---
+#---DI-06---
+#---DI-07---
+net in-wzw-manual <= hm2_7i76e.0.7i76.0.0.input-07
+#---DI-08---
+net in-pressure-before-ok <= hm2_7i76e.0.7i76.0.0.input-08
+#---DI-09---
+net in-pressure-after-ok <= hm2_7i76e.0.7i76.0.0.input-09
+#---DI-10---
+#---DI-11---
+#---DI-12---
+#---DI-13---
+#---DI-14---
+#---DI-15---
+net in-cooling-ok <= hm2_7i76e.0.7i76.0.0.input-15
+#---DI-16---
+#---DI-17---
+#---DI-18---
+#---DI-19---
+#---DI-20---
+net in-axis-x-ok <= hm2_7i76e.0.7i76.0.0.input-20-not
+#---DI-21---
+net in-axis-y-ok <= hm2_7i76e.0.7i76.0.0.input-21-not
+#---DI-22---
+net in-axis-z-ok <= hm2_7i76e.0.7i76.0.0.input-22-not
+#---DI-23---
+net probe-in <= hm2_7i76e.0.7i76.0.0.input-23
+#---DI-24---
+#---DI-25---
+#---DI-26---
+#---DI-27---
+#---DI-28---
+#---DI-29---
+#---DI-30---
+#---DI-31---
+net estop-ext <= hm2_7i76e.0.7i76.0.0.input-31
+
+# outputs
+#-----------
+#---DO-00---
+#---DO-01---
+net machine-is-on => hm2_7i76e.0.7i76.0.0.output-01
+#---DO-02---
+#---DO-03---
+net estop-active => hm2_7i76e.0.7i76.0.0.output-03
+#---DO-04---
+#---DO-05---
+net spindle-wzw-freigabe => hm2_7i76e.0.7i76.0.0.output-05
+#---DO-06---
+net machine-is-on => hm2_7i76e.0.7i76.0.0.output-06
+#---DO-07---
+net spindle-airseal => hm2_7i76e.0.7i76.0.0.output-07
+#---DO-08---
+net spindle-tool-opened => hm2_7i76e.0.7i76.0.0.output-08
+#---DO-09---
+#---DO-10---
+net spindle-tool-opened => hm2_7i76e.0.7i76.0.0.output-10
+#---DO-10---
+#---DO-11---
+#---DO-12---
+
+# debouncing
+# ----------
+setp debounce.0.delay 100
+
+net in-atc-tool-ok-raw => debounce.0.0.in
+net in-atc-tool-ok <= debounce.0.0.out
+
+net in-atc-tool-open-raw => debounce.0.1.in
+net in-atc-tool-open <= debounce.0.1.out

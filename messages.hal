@@ -1,0 +1,20 @@
+loadrt message names=m_vfd-error,m_vfd-com,m_estop-ext,m_estop-btm,m_estop-servo messages="VFD-Error (check VFD display),VFD-Communication lost, External E-Stop, Druckluft oder Kuehlung nicht OK, Servo-Fehler"
+addf m_vfd-error servo-thread
+addf m_vfd-com servo-thread
+addf m_estop-ext servo-thread
+addf m_estop-btm servo-thread
+addf m_estop-servo servo-thread
+
+# Spindle
+net estop-vfd-error => m_vfd-error.trigger
+
+setp m_vfd-com.edge 0
+net estop-watchdog-timeout => m_vfd-com.trigger
+
+# E-Stop Signale
+setp m_estop-ext.edge 0
+setp m_estop-btm.edge 0
+setp m_estop-servo.edge 0
+net estop-ext   => m_estop-ext.trigger
+net estop-btm   => m_estop-btm.trigger
+net estop-servo => m_estop-servo.trigger

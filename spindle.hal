@@ -1,0 +1,85 @@
+loadusr -W wj200_vfd device="/dev/ttyS0"
+setp wj200-vfd.0.mbslaveaddr 1
+setp wj200-vfd.0.enable 1
+
+loadrt watchdog num_inputs=1
+addf watchdog.process servo-thread
+addf watchdog.set-timeouts servo-thread
+
+# Freigabe FU
+# -----------
+net spindle-anforderung <= spindle.0.on
+
+# Spindle darf nur laufen, wenn ein Tool eingesetzt ist
+net in-atc-tool-ok      => and.spindle-freigabe.in0
+net spindle-anforderung => and.spindle-freigabe.in1
+net spindle-startsignal <= and.spindle-freigabe.out
+
+# Signale FU
+# ----------
+net spindle-vel-cmd-rps-abs => wj200-vfd.0.commanded-frequency
+net spindle-startsignal     => wj200-vfd.0.run
+net spindle-direction spindle.0.reverse => wj200-vfd.0.reverse
+net spindle-at-speed   <= wj200-vfd.0.is-at-speed
+net spindle-is-running <= wj200-vfd.0.is-running
+
+
+# Trigger Airseal Ventil
+# ----------------------
+net spindle-startsignal => or.spindle-running.in0
+net spindle-is-running  => or.spindle-running.in1
+net spindle-airseal <= or.spindle-running.out
+
+
+# Manueller Werkzeugwechsel
+# ----------------------------------
+
+# Freigabe
+# Programm idle oder paused
+net program-is-idle   <= halui.program.is-idle   => or.spindle-wzw-freigabe-program.in0
+net program-is-paused <= halui.program.is-paused => or.spindle-wzw-freigabe-program.in1
+net program-idle-or-paused <= or.spindle-wzw-freigabe-program.out
+
+net estop-is-activated <= halui.estop.is-activated
+
+setp lut5.spindle-wzw-freigabe.function 0x100000
+net spindle-is-running       => lut5.spindle-wzw-freigabe.in-0 # 0
+net spindle-startsignal      => lut5.spindle-wzw-freigabe.in-1 # 0
+net program-idle-or-paused   => lut5.spindle-wzw-freigabe.in-2 # 1
+net estop-is-activated       => lut5.spindle-wzw-freigabe.in-3 # 0
+net machine-is-on            => lut5.spindle-wzw-freigabe.in-4 # 1
+
+net spindle-wzw-freigabe <= lut5.spindle-wzw-freigabe.out
+
+# Tool oeffnen/schliessen
+setp edge.in-wzw-manual.both FALSE
+setp edge.in-wzw-manual.in-edge FALSE # rising edge
+net in-wzw-manual => edge.in-wzw-manual.in
+net in-wzw-manual-pressed <= edge.in-wzw-manual.out
+
+net spindle-tool-opened => not.spindle-tool-opened.in
+net spindle-tool-not-opened <= not.spindle-tool-opened.out
+
+# oeffnen
+net spindle-tool-not-opened => and.spindle-tool-open.in-00
+net in-wzw-manual-pressed   => and.spindle-tool-open.in-01
+net spindle-wzw-freigabe    => and.spindle-tool-open.in-02
+net spindle-tool-open <= and.spindle-tool-open.and
+
+# schliessen
+net spindle-tool-opened   => and.spindle-tool-close.in-00
+net in-wzw-manual-pressed => and.spindle-tool-close.in-01
+net spindle-wzw-freigabe  => and.spindle-tool-close.in-02
+net spindle-tool-close <=  and.spindle-tool-close.and
+
+net spindle-tool-open  => ff.spindle-wzw.set
+net spindle-tool-close => ff.spindle-wzw.reset
+
+net spindle-tool-opened => ff.spindle-wzw.out
+
+
+# Watchdog
+# --------
+net vfd-watchdog wj200-vfd.0.watchdog-out => watchdog.input-0
+setp watchdog.timeout-0 2.0
+setp watchdog.enable-in 1

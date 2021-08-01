@@ -84,7 +84,6 @@ net spindle-wzw-freigabe-blink <= and.spindle-wzw-freigabe-blink.out
 
 net spindle-wzw-freigabe-blink => xor.spindle-wzw-freigabe-sig.in0
 net spindle-wzw-freigabe       => xor.spindle-wzw-freigabe-sig.in1
-
 net spindle-wzw-freigabe-sig <= xor.spindle-wzw-freigabe-sig.out
 
 

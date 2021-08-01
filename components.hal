@@ -1,3 +1,5 @@
+# LUT5
+# ----
 loadrt lut5 names=lut5.estop,lut5.estop-servo,lut5.estop-spindle,lut5.estop-btm,lut5.spindle-wzw-freigabe
 addf lut5.estop                servo-thread
 addf lut5.estop-servo          servo-thread
@@ -5,34 +7,61 @@ addf lut5.estop-spindle        servo-thread
 addf lut5.estop-btm            servo-thread
 addf lut5.spindle-wzw-freigabe servo-thread
 
+
+# OR2
+# ---
 loadrt or2 names=or.spindle-running,or.spindle-wzw-freigabe-program
 addf or.spindle-running              servo-thread
 addf or.spindle-wzw-freigabe-program servo-thread
 
+
+# XOR2
+# ----
 loadrt xor2 names=xor.spindle-wzw-freigabe-sig
 addf xor.spindle-wzw-freigabe-sig servo-thread
 
+
+# NOT
+# ---
 loadrt not names=not.estop,not.spindle-tool-opened
 addf not.estop               servo-thread
 addf not.spindle-tool-opened servo-thread
 
-loadrt flipflop names=ff.spindle-wzw
-addf ff.spindle-wzw servo-thread
 
+# AND2
+# ----
 loadrt and2 names=and.spindle-freigabe,and.spindle-wzw-freigabe-blink
 addf and.spindle-freigabe           servo-thread
 addf and.spindle-wzw-freigabe-blink servo-thread
 
+
+# LOGIC
+# -----
 loadrt logic names=and.spindle-tool-open,and.spindle-tool-close personality=0x103,0x103
 addf and.spindle-tool-open  servo-thread
 addf and.spindle-tool-close servo-thread
 
+
+# FLIPFLOP
+# --------
+loadrt flipflop names=ff.spindle-wzw
+addf ff.spindle-wzw servo-thread
+
+
+# EDGE
+# ----
 loadrt edge names=edge.in-wzw-manual
 addf edge.in-wzw-manual servo-thread 
 
+
+# DEBOUNCE
+# --------
 loadrt debounce cfg=2
 addf debounce.0 servo-thread
 
+
+# SIGGEN
+# ------
 loadrt siggen names=siggen.blink1
 addf siggen.blink1.update servo-thread
 

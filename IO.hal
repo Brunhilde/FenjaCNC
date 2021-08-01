@@ -56,7 +56,7 @@ net machine-is-on => hm2_7i76e.0.7i76.0.0.output-01
 net estop-active => hm2_7i76e.0.7i76.0.0.output-03
 #---DO-04---
 #---DO-05---
-net spindle-wzw-freigabe => hm2_7i76e.0.7i76.0.0.output-05
+net spindle-wzw-freigabe-sig => hm2_7i76e.0.7i76.0.0.output-05
 #---DO-06---
 net machine-is-on => hm2_7i76e.0.7i76.0.0.output-06
 #---DO-07---

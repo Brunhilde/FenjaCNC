@@ -9,6 +9,9 @@ loadrt or2 names=or.spindle-running,or.spindle-wzw-freigabe-program
 addf or.spindle-running              servo-thread
 addf or.spindle-wzw-freigabe-program servo-thread
 
+loadrt xor2 names=xor.spindle-wzw-freigabe-sig
+addf xor.spindle-wzw-freigabe-sig servo-thread
+
 loadrt not names=not.estop,not.spindle-tool-opened
 addf not.estop               servo-thread
 addf not.spindle-tool-opened servo-thread
@@ -16,8 +19,9 @@ addf not.spindle-tool-opened servo-thread
 loadrt flipflop names=ff.spindle-wzw
 addf ff.spindle-wzw servo-thread
 
-loadrt and2 names=and.spindle-freigabe
-addf and.spindle-freigabe servo-thread
+loadrt and2 names=and.spindle-freigabe,and.spindle-wzw-freigabe-blink
+addf and.spindle-freigabe           servo-thread
+addf and.spindle-wzw-freigabe-blink servo-thread
 
 loadrt logic names=and.spindle-tool-open,and.spindle-tool-close personality=0x103,0x103
 addf and.spindle-tool-open  servo-thread
@@ -28,3 +32,9 @@ addf edge.in-wzw-manual servo-thread
 
 loadrt debounce cfg=2
 addf debounce.0 servo-thread
+
+loadrt siggen names=siggen.blink1
+addf siggen.blink1.update servo-thread
+
+setp siggen.blink1.frequency 2
+net blink1 <= siggen.blink1.clock 

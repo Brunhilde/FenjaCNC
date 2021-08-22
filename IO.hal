@@ -11,6 +11,7 @@ net in-atc-tool-ok-raw <= hm2_7i76e.0.7i76.0.0.input-03
 net in-atc-tool-open-raw <= hm2_7i76e.0.7i76.0.0.input-04
 #---DI-05---
 #---DI-06---
+net in-touch-probe <= hm2_7i76e.0.7i76.0.0.input-06-not
 #---DI-07---
 net in-wzw-manual <= hm2_7i76e.0.7i76.0.0.input-07
 #---DI-08---
@@ -29,20 +30,20 @@ net in-cooling-ok <= hm2_7i76e.0.7i76.0.0.input-15
 #---DI-18---
 #---DI-19---
 #---DI-20---
-net in-axis-x-ok <= hm2_7i76e.0.7i76.0.0.input-20-not
 #---DI-21---
-net in-axis-y-ok <= hm2_7i76e.0.7i76.0.0.input-21-not
 #---DI-22---
-net in-axis-z-ok <= hm2_7i76e.0.7i76.0.0.input-22-not
 #---DI-23---
-net probe-in <= hm2_7i76e.0.7i76.0.0.input-23
+net in-tool-sensor <= hm2_7i76e.0.7i76.0.0.input-23-not
 #---DI-24---
 #---DI-25---
 #---DI-26---
 #---DI-27---
 #---DI-28---
+net in-axis-x-ok <= hm2_7i76e.0.7i76.0.0.input-28-not
 #---DI-29---
+net in-axis-y-ok <= hm2_7i76e.0.7i76.0.0.input-29-not
 #---DI-30---
+net in-axis-z-ok <= hm2_7i76e.0.7i76.0.0.input-30-not
 #---DI-31---
 net estop-ext <= hm2_7i76e.0.7i76.0.0.input-31
 
@@ -79,3 +80,12 @@ net in-atc-tool-ok <= debounce.0.0.out
 
 net in-atc-tool-open-raw => debounce.0.1.in
 net in-atc-tool-open <= debounce.0.1.out
+
+# probes
+# ------
+net probe-is-3d    mux-gen.00.sel-bit-00 <= motion.digital-out-00
+
+net in-tool-sensor => mux-gen.00.in-bit-00
+net in-touch-probe => mux-gen.00.in-bit-01
+
+net probe-in <= mux-gen.00.out-bit

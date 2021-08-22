@@ -67,3 +67,8 @@ addf siggen.blink1.update servo-thread
 
 setp siggen.blink1.frequency 2
 net blink1 <= siggen.blink1.clock 
+
+# muxgen
+# ------
+loadrt mux_generic config=bb2
+addf mux-gen.00 servo-thread 

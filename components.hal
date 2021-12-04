@@ -23,9 +23,10 @@ addf xor.spindle-wzw-freigabe-sig servo-thread
 
 # NOT
 # ---
-loadrt not names=not.estop,not.spindle-tool-opened
+loadrt not names=not.estop,not.spindle-tool-opened,not.time
 addf not.estop               servo-thread
 addf not.spindle-tool-opened servo-thread
+addf not.time                servo-thread
 
 
 # AND2

@@ -45,7 +45,8 @@ net estop-is-activated <= halui.estop.is-activated
 setp lut5.spindle-wzw-freigabe.function 0x100000
 net spindle-is-running       => lut5.spindle-wzw-freigabe.in-0 # 0
 net spindle-startsignal      => lut5.spindle-wzw-freigabe.in-1 # 0
-net program-idle-or-paused   => lut5.spindle-wzw-freigabe.in-2 # 1
+#net program-idle-or-paused   => lut5.spindle-wzw-freigabe.in-2 # 1
+setp lut5.spindle-wzw-freigabe.in-2 1
 net estop-is-activated       => lut5.spindle-wzw-freigabe.in-3 # 0
 net machine-is-on            => lut5.spindle-wzw-freigabe.in-4 # 1
 

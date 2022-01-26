@@ -28,6 +28,9 @@ o<probe_round_pocket> sub
   #<probe_mode> = #15          (=0)
   #<max_vel_slider> = #16      (=50)
 
+  (Activate probe input)
+  M64 P0
+
   (Cancel G92 offsets)
   G92.1
 
@@ -176,6 +179,9 @@ o<probe_round_pocket> sub
     (Probe Completion Move to Z Clearance Plane, and X Zero, Y Zero)
     o<probe_round_pocket> return
   o<120> endif
+  
+  (Dectivate probe input)
+  M65 P0
 
 o<probe_round_pocket> endsub
 

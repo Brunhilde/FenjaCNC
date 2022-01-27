@@ -10,10 +10,11 @@ addf lut5.spindle-wzw-freigabe servo-thread
 
 # OR2
 # ---
-loadrt or2 names=or.spindle-running,or.spindle-wzw-freigabe-program,or.probe
+loadrt or2 names=or.spindle-running,or.spindle-wzw-freigabe-program,or.probe,or.coolant
 addf or.spindle-running              servo-thread
 addf or.spindle-wzw-freigabe-program servo-thread
 addf or.probe                        servo-thread
+addf or.cooland                      servo-thread
 
 
 # XOR2

@@ -73,9 +73,9 @@ net spindle-tool-opened => hm2_7i76e.0.7i76.0.0.output-10
 #---DO-10---
 #---DO-11---
 #---DO-12---
-net coolant-mist => hm2_7i76e.0.7i76.0.0.output-12
+net coolant-both => hm2_7i76e.0.7i76.0.0.output-12
 #---DO-13---
-net coolant-flood => hm2_7i76e.0.7i76.0.0.output-13
+net coolant-both => hm2_7i76e.0.7i76.0.0.output-13
 #---DO-14---
 #---DO-15---
 
@@ -96,7 +96,13 @@ net in-atc-tool-open <= debounce.0.1.out
 #net in-tool-sensor => mux-gen.00.in-bit-00
 #net in-touch-probe => mux-gen.00.in-bit-01
 net in-tool-sensor => or.probe.in0
-net in-touch-probe => or.probe.in0
+net in-touch-probe => or.probe.in1
 
 #net probe-in <= mux-gen.00.out-bit
 net probe-in <= or.probe.out
+
+# coolant
+# -------
+net coolant-mist  => or.coolant.in0
+net coolant-flood => or.coolant.in1
+net coolant-both  <= or.coolant.out

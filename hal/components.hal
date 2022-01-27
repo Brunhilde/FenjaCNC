@@ -10,9 +10,10 @@ addf lut5.spindle-wzw-freigabe servo-thread
 
 # OR2
 # ---
-loadrt or2 names=or.spindle-running,or.spindle-wzw-freigabe-program
+loadrt or2 names=or.spindle-running,or.spindle-wzw-freigabe-program,or.probe
 addf or.spindle-running              servo-thread
 addf or.spindle-wzw-freigabe-program servo-thread
+addf or.probe                        servo-thread
 
 
 # XOR2
@@ -71,5 +72,13 @@ net blink1 <= siggen.blink1.clock
 
 # muxgen
 # ------
-loadrt mux_generic config=bb2
-addf mux-gen.00 servo-thread 
+#loadrt mux_generic config=bb2
+#addf mux-gen.00 servo-thread 
+
+# lowpass
+# -------
+loadrt ilowpass names=lopath.enc-smooth
+
+# conv
+# ----
+loadrt conv_s32_float names=s32float.tool

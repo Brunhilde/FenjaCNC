@@ -30,9 +30,6 @@ o<probe_cal_round_pocket> sub
   #<sq_cal_axis> = #17         (=0)
   #<max_vel_slider> = #18      (=50)
 
-  (Activate probe input)
-  M64 P0
-
   (Cancel G92 offsets)
   G92.1
 
@@ -215,9 +212,6 @@ o<probe_cal_round_pocket> sub
     (Probe Completion Move to Z Clearance Plane, and X Zero, Y Zero)
     o<probe_cal_round_pocket> return
   o<150> endif
-
-  (Deactivate probe input)
-  M65 P0
 
 o<probe_cal_round_pocket> endsub
 

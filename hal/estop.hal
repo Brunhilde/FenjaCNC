@@ -46,6 +46,7 @@ net estop-ext     => lut5.estop.in-3
 setp lut5.estop.in-4 1
 
 # e-stop loop
+net estop-out                   <= iocontrol.0.user-enable-out
 net estop-signal lut5.estop.out => iocontrol.0.emc-enable-in
 
 

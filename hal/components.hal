@@ -19,7 +19,7 @@ addf or.coolant                      servo-thread
 
 # XOR2
 # ----
-loadrt xor2 names=xor.spindle-wzw-freigabe-sig
+loadrt xor2 names=xor.spindle-wzw-freigabe-sig,xor.lamp-running
 addf xor.spindle-wzw-freigabe-sig servo-thread
 
 
@@ -33,9 +33,11 @@ addf not.time                servo-thread
 
 # AND2
 # ----
-loadrt and2 names=and.spindle-freigabe,and.spindle-wzw-freigabe-blink
+loadrt and2 names=and.spindle-freigabe,and.spindle-wzw-freigabe-blink,and.lamp-yellow,and.lamp-running
 addf and.spindle-freigabe           servo-thread
 addf and.spindle-wzw-freigabe-blink servo-thread
+addf and.lamp-yellow                servo-thread
+addf and.lamp-running               servo-thread
 
 
 # LOGIC
@@ -47,8 +49,11 @@ addf and.spindle-tool-close servo-thread
 
 # FLIPFLOP
 # --------
-loadrt flipflop names=ff.spindle-wzw
+loadrt flipflop names=ff.spindle-wzw,ff.resume,ff.pause,ff.run
 addf ff.spindle-wzw servo-thread
+addf ff.resume      servo-thread
+addf ff.pause       servo-thread
+addf ff.run         servo-thread
 
 
 # EDGE

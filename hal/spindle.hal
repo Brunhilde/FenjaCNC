@@ -53,8 +53,9 @@ net spindle-airseal <= or.spindle-running.out
 
 # Freigabe
 # Programm idle oder paused
-net program-is-idle   <= halui.program.is-idle   => or.spindle-wzw-freigabe-program.in0
-net program-is-paused <= halui.program.is-paused => or.spindle-wzw-freigabe-program.in1
+net program-is-idle    <= halui.program.is-idle   => or.spindle-wzw-freigabe-program.in0
+net program-is-paused  <= halui.program.is-paused => or.spindle-wzw-freigabe-program.in1
+net program-is-running <= halui.program.is-running
 net program-idle-or-paused <= or.spindle-wzw-freigabe-program.out
 
 net estop-is-activated <= halui.estop.is-activated

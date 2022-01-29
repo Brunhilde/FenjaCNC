@@ -38,7 +38,7 @@ net in-cooling-ok <= hm2_7i76e.0.7i76.0.0.input-15
 #---DI-23---
 net in-tool-sensor <= hm2_7i76e.0.7i76.0.0.input-23-not
 #---DI-24---
-net in-button-start <= hm2_7i76e.0.7i76.0.0.input-25
+net in-button-start <= hm2_7i76e.0.7i76.0.0.input-24
 #---DI-25---
 #---DI-26---
 #---DI-27---
@@ -108,7 +108,7 @@ net probe-in <= or.probe.out
 # -------
 net coolant-mist  => or.coolant.in0
 net coolant-flood => or.coolant.in1
-net coolant-both  <= or.coolant.
+net coolant-both  <= or.coolant.out
 
 # run/pause/resume button
 # -----------------------
@@ -131,7 +131,7 @@ net lamp-yellow     <= and.lamp-yellow.out
 # running lamp
 # ------------
 net program-is-paused => and.lamp-running.in0
-net blink1            => and.lamp-running.in2
+net blink1            => and.lamp-running.in1
 
 net running-lamp-1 and.lamp-running.out => xor.lamp-running.in0
 net program-is-running                  => xor.lamp-running.in1

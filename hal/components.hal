@@ -21,6 +21,7 @@ addf or.coolant                      servo-thread
 # ----
 loadrt xor2 names=xor.spindle-wzw-freigabe-sig,xor.lamp-running
 addf xor.spindle-wzw-freigabe-sig servo-thread
+addf xor.lamp-running             servo-thread
 
 
 # NOT

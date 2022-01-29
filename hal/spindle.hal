@@ -73,7 +73,7 @@ net spindle-wzw-freigabe <= lut5.spindle-wzw-freigabe.out
 # Tool oeffnen/schliessen
 setp edge.in-wzw-manual.both FALSE
 setp edge.in-wzw-manual.in-edge FALSE # rising edge
-net in-wzw-manual => edge.in-wzw-manual.in
+net DI_ATC-wzw-manual => edge.in-wzw-manual.in
 net in-wzw-manual-pressed <= edge.in-wzw-manual.out
 
 net spindle-tool-opened => not.spindle-tool-opened.in

@@ -2,93 +2,106 @@
 
 # inputs
 #-------
-#---DI-00---
-net max-home-x <= hm2_7i76e.0.7i76.0.0.input-00-not
-#---DI-01---
-net max-home-y <= hm2_7i76e.0.7i76.0.0.input-01-not
-#---DI-02---
-net max-home-z <= hm2_7i76e.0.7i76.0.0.input-02-not
-#---DI-03---
-net in-atc-tool-ok-raw <= hm2_7i76e.0.7i76.0.0.input-03
-#---DI-04---
-net in-atc-tool-open-raw <= hm2_7i76e.0.7i76.0.0.input-04
-#---DI-05---
-#---DI-06---
-net in-touch-probe <= hm2_7i76e.0.7i76.0.0.input-06-not
-#---DI-07---
-net in-wzw-manual <= hm2_7i76e.0.7i76.0.0.input-07
-#---DI-08---
-net in-pressure-before-ok <= hm2_7i76e.0.7i76.0.0.input-08
-#---DI-09---
-net in-pressure-after-ok <= hm2_7i76e.0.7i76.0.0.input-09
-#---DI-10---
-#---DI-11---
-#---DI-12---
-#---DI-13---
-#---DI-14---
-#---DI-15---
-net in-cooling-ok <= hm2_7i76e.0.7i76.0.0.input-15
-#---DI-16---
-#---DI-17---
-#---DI-18---
-#---DI-19---
-#---DI-20---
-#---DI-21---
-#---DI-22---
-#---DI-23---
-net in-tool-sensor <= hm2_7i76e.0.7i76.0.0.input-23-not
-#---DI-24---
-net in-button-start <= hm2_7i76e.0.7i76.0.0.input-24
-#---DI-25---
-#---DI-26---
-#---DI-27---
-#---DI-28---
-net in-axis-x-ok <= hm2_7i76e.0.7i76.0.0.input-28-not
-#---DI-29---
-net in-axis-y-ok <= hm2_7i76e.0.7i76.0.0.input-29-not
-#---DI-30---
-net in-axis-z-ok <= hm2_7i76e.0.7i76.0.0.input-30-not
-#---DI-31---
-net estop-ext <= hm2_7i76e.0.7i76.0.0.input-31
+# ---DI-00---
+net AI_CP-pot-feed <= hm2_7i76e.0.7i76.0.0.analogin0
+# ---DI-01---
+net AI_CP-pot-spindle <= hm2_7i76e.0.7i76.0.0.analogin1
+# ---DI-02---
+net AI_ATC-temp-sensor <= hm2_7i76e.0.7i76.0.0.analogin2
+# ---DI-03---
+net AI_fieldvoltage <= hm2_7i76e.0.7i76.0.0.analogin3
+
+#--------------------------
+# + PASSIVVERTEILER Z-ACHSE
+# +---DI-04---
+net DI_CNC-max-home-x <= hm2_7i76e.0.7i76.0.0.input-04-not
+# +---DI-05---
+net DI_CNC-max-home-y <= hm2_7i76e.0.7i76.0.0.input-05-not
+# +---DI-06---
+net DI_CNC-max-home-z <= hm2_7i76e.0.7i76.0.0.input-06-not
+# +---DI-07---
+net DI_ATC-tool-ok-raw <= hm2_7i76e.0.7i76.0.0.input-07
+# +---DI-08---
+net DI_ATC-tool-open-raw <= hm2_7i76e.0.7i76.0.0.input-08
+# +---DI-09---
+# +---DI-10---
+net DI_CNC-touch-probe <= hm2_7i76e.0.7i76.0.0.input-10-not
+# +---DI-11---
+net DI_ATC-wzw-manual <= hm2_7i76e.0.7i76.0.0.input-11
+#--------------------------
+
+#----------------------------
+# + PASSIVVERTEILER DRUCKLUFT
+# +---DI-12---
+net DI_AIR-pressure-before-ok <= hm2_7i76e.0.7i76.0.0.input-12
+# +---DI-13---
+net DI_AIR-pressure-after-ok <= hm2_7i76e.0.7i76.0.0.input-13
+# +---DI-14---
+# +---DI-15---
+# +---DI-16---
+# +---DI-17---
+# +---DI-18---
+# +---DI-19---
+net DI_COOL-cooling-ok <= hm2_7i76e.0.7i76.0.0.input-19
+#----------------------------    
+
+# ---DI-20---
+# ---DI-21---
+# ---DI-22---
+# ---DI-23---
+net DI_CNC-tool-sensor <= hm2_7i76e.0.7i76.0.0.input-23-not
+# ---DI-24---
+net DI_CP-button-start <= hm2_7i76e.0.7i76.0.0.input-24
+# ---DI-25---
+# ---DI-26---
+# ---DI-27---
+# ---DI-28---
+net DI_DRIVE-axis-x-ok <= hm2_7i76e.0.7i76.0.0.input-28-not
+# ---DI-29---
+net DI_DRIVE-axis-y-ok <= hm2_7i76e.0.7i76.0.0.input-29-not
+# ---DI-30---
+net DI_DRIVE-axis-z-ok <= hm2_7i76e.0.7i76.0.0.input-30-not
+# ---DI-31---
+net DI_ESTOP-ext <= hm2_7i76e.0.7i76.0.0.input-31
 
 # outputs
 #-----------
-#---DO-00--- (Ampel blau)
+# ---DO-00--- (Ampel blau)
 net spindle-wzw-freigabe-sig => hm2_7i76e.0.7i76.0.0.output-00
-#---DO-01--- (Ampel gruen)
+# ---DO-01--- (Ampel gruen)
 net lamp-running => hm2_7i76e.0.7i76.0.0.output-01
-#---DO-02--- (Ampel gelb)
+# ---DO-02--- (Ampel gelb)
 net lamp-yellow => hm2_7i76e.0.7i76.0.0.output-02
-#---DO-03--- (Ampel rot)
+# ---DO-03--- (Ampel rot)
 net estop-active => hm2_7i76e.0.7i76.0.0.output-03
-#---DO-04--- (Ampel Summer)
-#---DO-05--- (LED Werkzeugwechsel Taster)
+# ---DO-04--- (Ampel Summer)
+# ---DO-05--- (LED Werkzeugwechsel Taster)
 net spindle-wzw-freigabe-sig => hm2_7i76e.0.7i76.0.0.output-05
-#---DO-06--- (Pneunatik Hauptventil)
+# ---DO-06--- (Pneunatik Hauptventil)
 net machine-is-on => hm2_7i76e.0.7i76.0.0.output-06
-#---DO-07--- (Ventil Spindel Airseal)
+# ---DO-07--- (Ventil Spindel Airseal)
 net spindle-airseal => hm2_7i76e.0.7i76.0.0.output-07
-#---DO-08--- (Ventil Spindle de-dust)
+# ---DO-08--- (Ventil Spindle de-dust)
 net spindle-tool-opened => hm2_7i76e.0.7i76.0.0.output-08
-#---DO-09--- (Ventil Werkzeuglaengensensor de-dust)
-#---DO-10--- (Vetnil Spindel Werkzeug Oeffnen)
+# ---DO-09--- (Ventil Werkzeuglaengensensor de-dust)
+# ---DO-10--- (Vetnil Spindel Werkzeug Oeffnen)
 net spindle-tool-opened => hm2_7i76e.0.7i76.0.0.output-10
-#---DO-11--- (Ventil Werkzeugrack)
-#---DO-12--- (Ventil MMS Luft)
+# ---DO-11--- (Ventil Werkzeugrack)
+# ---DO-12--- (Ventil MMS Luft)
 net coolant-both => hm2_7i76e.0.7i76.0.0.output-12
-#---DO-13--- (Ventil MMS KSS)
+# ---DO-13--- (Ventil MMS KSS)
 net coolant-both => hm2_7i76e.0.7i76.0.0.output-13
-#---DO-14--- (LED Taster 1)
-#---DO-15--- (LED Taster 2)
+# ---DO-14--- (LED Taster 1)
+# ---DO-15--- (LED Taster 2)
 
 # debouncing
 # ----------
 setp debounce.0.delay 100
 
-net in-atc-tool-ok-raw => debounce.0.0.in
+net DI_ATC-tool-ok-raw => debounce.0.0.in
 net in-atc-tool-ok <= debounce.0.0.out
 
-net in-atc-tool-open-raw => debounce.0.1.in
+net DI_ATC-tool-open-raw => debounce.0.1.in
 net in-atc-tool-open <= debounce.0.1.out
 
 # probes
@@ -97,8 +110,8 @@ net in-atc-tool-open <= debounce.0.1.out
 
 #net in-tool-sensor => mux-gen.00.in-bit-00
 #net in-touch-probe => mux-gen.00.in-bit-01
-net in-tool-sensor => or.probe.in0
-#net in-touch-probe => or.probe.in1
+net DI_CNC-tool-sensor => or.probe.in0
+#net DI_CNC-touch-probe => or.probe.in1
 setp or.probe.in1 0
 
 #net probe-in <= mux-gen.00.out-bit
@@ -112,7 +125,7 @@ net coolant-both  <= or.coolant.out
 
 # run/pause/resume button
 # -----------------------
-net in-button-start => ff.pause.clk ff.resume.clk ff.run.clk
+net DI_CP-button-start => ff.pause.clk ff.resume.clk ff.run.clk
 
 net program-is-paused  => ff.resume.data ff.pause.reset
 net program-is-running => ff.pause.data ff.run.reset ff.resume.reset

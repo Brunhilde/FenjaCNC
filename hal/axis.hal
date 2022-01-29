@@ -18,9 +18,9 @@ net x-pos-fb  hm2_7i76e.0.stepgen.00.position-fb  => joint.0.motor-pos-fb
 net x-enable  hm2_7i76e.0.stepgen.00.enable       <= joint.0.amp-enable-out
 
 # ---setup home / limit switch signals---
-net max-home-x  => joint.0.home-sw-in
+net DI_CNC-max-home-x  => joint.0.home-sw-in
 net x-neg-limit => joint.0.neg-lim-sw-in
-net max-home-x  => joint.0.pos-lim-sw-in
+net DI_CNC-max-home-x  => joint.0.pos-lim-sw-in
 
 
 #*******************
@@ -43,9 +43,9 @@ net y-pos-fb  hm2_7i76e.0.stepgen.01.position-fb  => joint.1.motor-pos-fb
 net y-enable  hm2_7i76e.0.stepgen.01.enable       <= joint.1.amp-enable-out
 
 # ---setup home / limit switch signals---
-net max-home-y  => joint.1.home-sw-in
+net DI_CNC-max-home-y  => joint.1.home-sw-in
 net y-neg-limit => joint.1.neg-lim-sw-in
-net max-home-y  => joint.1.pos-lim-sw-in
+net DI_CNC-max-home-y  => joint.1.pos-lim-sw-in
 
 
 #*******************
@@ -68,6 +68,6 @@ net z-pos-fb  hm2_7i76e.0.stepgen.02.position-fb  => joint.2.motor-pos-fb
 net z-enable  hm2_7i76e.0.stepgen.02.enable       <= joint.2.amp-enable-out
 
 # ---setup home / limit switch signals---
-net max-home-z  => joint.2.home-sw-in
+net DI_CNC-max-home-z  => joint.2.home-sw-in
 net z-neg-limit => joint.2.neg-lim-sw-in
-net max-home-z  => joint.2.pos-lim-sw-in
+net DI_CNC-max-home-z  => joint.2.pos-lim-sw-in

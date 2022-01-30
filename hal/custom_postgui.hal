@@ -12,24 +12,58 @@ net external-mashine-on => halui.machine.on
 # -------------
 setp halui.feed-override.scale 0.01
 setp halui.feed-override.direct-value 1
-setp scale.feed.gain 8.4
-setp scale.feed.offset -0.142
 setp lowpass.feed.gain 0.01
 
+setp lincurve.feed.x-val-00 0
+setp lincurve.feed.x-val-01 0
+setp lincurve.feed.x-val-02 0
+setp lincurve.feed.x-val-03 0
+setp lincurve.feed.x-val-04 0
+setp lincurve.feed.x-val-05 0
+setp lincurve.feed.x-val-06 0
+setp lincurve.feed.x-val-07 0
+setp lincurve.feed.x-val-08 0
+setp lincurve.feed.x-val-09 0
+setp lincurve.feed.x-val-10 0
+setp lincurve.feed.y-val-00 0
+setp lincurve.feed.y-val-01 10
+setp lincurve.feed.y-val-02 20
+setp lincurve.feed.y-val-03 30
+setp lincurve.feed.y-val-04 40
+setp lincurve.feed.y-val-05 50
+setp lincurve.feed.y-val-06 60
+setp lincurve.feed.y-val-07 70
+setp lincurve.feed.y-val-08 80
+setp lincurve.feed.y-val-09 90
+setp lincurve.feed.y-val-10 100
+
+# lowpass
 net AI_CP-pot-feed => lowpass.feed.in
-net feed-override-lp lowpass.feed.out => scale.feed.in
-net feed-override-s32 floats32.feed.in <= scale.feed.out
+# lincurve
+net feed-override-lp lowpass.feed.out => lincurve.feed.in
+# convert to s32
+net feed-override-s32 floats32.feed.in <= lincurve.feed.out
+# -> halui
 net feed-override floats32.feed.out => halui.feed-override.counts
 
 # spindle-override
 # ----------------
 setp halui.spindle.0.override.scale 0.01
 setp halui.spindle.0.override.direct-value 1
-setp scale.spindle.gain 2.1
-setp scale.spindle.offset 50
 setp lowpass.spindle.gain 0.01
 
+setp lincurve.spindle.x-val-00 0
+setp lincurve.spindle.x-val-01 0
+setp lincurve.spindle.x-val-02 0
+setp lincurve.spindle.y-val-00 50
+setp lincurve.spindle.y-val-01 75
+setp lincurve.spindle.y-val-02 100
+
+# lowpass
 net AI_CP-pot-spindle => lowpass.spindle.in
-net spindle-override-lp lowpass.spindle.out => scale.spindle.in
-net spindle-override-s32 floats32.spindle.in <= scale.spindle.out
+# lincurve
+net spindle-override-lp lowpass.spindle.out => lincurve.spindle.in
+# convert to 23
+net spindle-override-s32 floats32.spindle.in <= lincurve.spindle.out
+# -> halui
 net spindle-override floats32.spindle.out => halui.spindle.0.override.counts

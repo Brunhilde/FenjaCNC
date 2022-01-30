@@ -96,11 +96,14 @@ addf lowpass.spindle servo-thread
 
 # scale
 # -----
-loadrt scale names=scale.feed,scale.spindle,scale.rapid
 
-addf scale.feed    servo-thread
-addf scale.spindle servo-thread
-addf scale.rapid   servo-thread
+
+# lincurve
+# --------
+loadrt lincurve names=lincurve.feed,lincurve.spindle personality=11,3
+
+addf lincurve.feed    servo-thread
+addf lincurve.spindle servo-thread
 
 # conv
 # ----

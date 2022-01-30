@@ -97,7 +97,7 @@ net spindle-tool-close => ff.spindle-wzw.reset
 net spindle-tool-opened => ff.spindle-wzw.out
 
 # Freigabe Signal am Taster
-net blink1              => and.spindle-wzw-freigabe-blink.in0
+net blink2hz            => and.spindle-wzw-freigabe-blink.in0
 net spindle-tool-opened => and.spindle-wzw-freigabe-blink.in1
 net spindle-wzw-freigabe-blink <= and.spindle-wzw-freigabe-blink.out
 

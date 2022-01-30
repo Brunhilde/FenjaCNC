@@ -144,7 +144,7 @@ net lamp-yellow     <= and.lamp-yellow.out
 # running lamp
 # ------------
 net program-is-paused => and.lamp-running.in0
-net blink1            => and.lamp-running.in1
+net blink1hz          => and.lamp-running.in1
 
 net running-lamp-1 and.lamp-running.out => xor.lamp-running.in0
 net program-is-running                  => xor.lamp-running.in1

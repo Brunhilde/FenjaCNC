@@ -71,11 +71,15 @@ addf debounce.0 servo-thread
 
 # SIGGEN
 # ------
-loadrt siggen names=siggen.blink1
-addf siggen.blink1.update servo-thread
+loadrt siggen names=siggen.blink1hz,siggen.blink2hz
+addf siggen.blink1hz.update servo-thread
+addf siggen.blink2hz.update servo-thread
 
-setp siggen.blink1.frequency 2
-net blink1 <= siggen.blink1.clock 
+setp siggen.blink1hz.frequency 1
+net blink1hz <= siggen.blink1hz.clock 
+
+setp siggen.blink2.frequency 2
+net blink2hz <= siggen.blink2hz.clock 
 
 # muxgen
 # ------

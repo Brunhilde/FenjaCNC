@@ -78,7 +78,7 @@ addf siggen.blink2hz.update servo-thread
 setp siggen.blink1hz.frequency 1
 net blink1hz <= siggen.blink1hz.clock 
 
-setp siggen.blink2.frequency 2
+setp siggen.blink2hz.frequency 2
 net blink2hz <= siggen.blink2hz.clock 
 
 # muxgen
@@ -89,7 +89,24 @@ net blink2hz <= siggen.blink2hz.clock
 # lowpass
 # -------
 loadrt ilowpass names=lopath.enc-smooth
+loadrt  lowpass names=lowpass.feed,lowpass.spindle
+
+addf lowpass.feed    servo-thread
+addf lowpass.spindle servo-thread
+
+# scale
+# -----
+loadrt scale names=scale.feed,scale.spindle,scale.rapid
+
+addf scale.feed    servo-thread
+addf scale.spindle servo-thread
+addf scale.rapid   servo-thread
 
 # conv
 # ----
 loadrt conv_s32_float names=s32float.tool
+loadrt conv_float_s32 names=floats32.feed,floats32.spindle
+
+addf s32float.tool    servo-thread
+addf floats32.feed    servo-thread
+addf floats32.spindle servo-thread

@@ -16,9 +16,9 @@ net estop-btm <= lut5.estop-btm.out
 # ------
 setp lut5.estop-servo.function 0x80000000
 
-net DI_CNC-axis-x-ok => lut5.estop-servo.in-0
-net DI_CNC-axis-z-ok => lut5.estop-servo.in-1
-net DI_CNC-axis-y-ok => lut5.estop-servo.in-2
+net DI_DRIVE-axis-x-ok => lut5.estop-servo.in-0
+net DI_DRIVE-axis-z-ok => lut5.estop-servo.in-1
+net DI_DRIVE-axis-y-ok => lut5.estop-servo.in-2
 setp lut5.estop-servo.in-3 1
 setp lut5.estop-servo.in-4 1
 

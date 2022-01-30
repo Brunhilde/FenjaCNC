@@ -7,3 +7,29 @@ source hal/time.hal
 #net spindle-vel-cmd-rpm-abs => gmoccapy.spindle_feedback_bar
 
 net external-mashine-on => halui.machine.on
+
+# feed-override
+# -------------
+setp halui.feed-override.scale 0.01
+setp halui.feed-override.direct-value 1
+setp scale.feed.gain 8.4
+setp scale.feed.offset -0.142
+setp lowpass.feed.gain 0.01
+
+net AI_CP-pot-feed => lowpass.feed.in
+net feed-override-lp lowpass.feed.out => scale.feed.in
+net feed-override-s32 floats32.feed.in <= scale.feed.out
+net feed-override floats32.feed.out => halui.feed-override.counts
+
+# spindle-override
+# ----------------
+setp halui.spindle.0.override.scale 0.01
+setp halui.spindle.0.override.direct-value 1
+setp scale.spindle.gain 2.1
+setp scale.spindle.offset 50
+setp lowpass.spindle.gain 0.01
+
+net AI_CP-pot-spindle => lowpass.spindle.in
+net spindle-override-lp lowpass.spindle.out => scale.spindle.in
+net spindle-override-s32 floats32.spindle.in <= scale.spindle.out
+net spindle-override floats32.spindle.out => halui.spindle.0.override.counts

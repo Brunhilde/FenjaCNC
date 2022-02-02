@@ -14,28 +14,16 @@ setp halui.feed-override.scale 0.01
 setp halui.feed-override.direct-value 1
 setp lowpass.feed.gain 0.01
 
-setp lincurve.feed.x-val-00 0
-setp lincurve.feed.x-val-01 0
-setp lincurve.feed.x-val-02 0
-setp lincurve.feed.x-val-03 0
-setp lincurve.feed.x-val-04 0
-setp lincurve.feed.x-val-05 0
-setp lincurve.feed.x-val-06 0
-setp lincurve.feed.x-val-07 0
-setp lincurve.feed.x-val-08 0
-setp lincurve.feed.x-val-09 0
-setp lincurve.feed.x-val-10 0
+setp lincurve.feed.x-val-00 0.142
+setp lincurve.feed.x-val-01 9.1
+setp lincurve.feed.x-val-02 9.53
+setp lincurve.feed.x-val-03 9.9
+setp lincurve.feed.x-val-04 23.8
 setp lincurve.feed.y-val-00 0
-setp lincurve.feed.y-val-01 10
-setp lincurve.feed.y-val-02 20
-setp lincurve.feed.y-val-03 30
-setp lincurve.feed.y-val-04 40
-setp lincurve.feed.y-val-05 50
-setp lincurve.feed.y-val-06 60
-setp lincurve.feed.y-val-07 70
-setp lincurve.feed.y-val-08 80
-setp lincurve.feed.y-val-09 90
-setp lincurve.feed.y-val-10 100
+setp lincurve.feed.y-val-01 100
+setp lincurve.feed.y-val-02 100
+setp lincurve.feed.y-val-03 100
+setp lincurve.feed.y-val-04 200
 
 # lowpass
 net AI_CP-pot-feed => lowpass.feed.in
@@ -52,12 +40,17 @@ setp halui.spindle.0.override.scale 0.01
 setp halui.spindle.0.override.direct-value 1
 setp lowpass.spindle.gain 0.01
 
-setp lincurve.spindle.x-val-00 0
-setp lincurve.spindle.x-val-01 0
-setp lincurve.spindle.x-val-02 0
+setp lincurve.spindle.x-val-00 0.142
+setp lincurve.spindle.x-val-01 9.53
+setp lincurve.spindle.x-val-02 23.8
+setp lincurve.spindle.x-val-03 23.8
+setp lincurve.spindle.x-val-04 23.8
 setp lincurve.spindle.y-val-00 50
 setp lincurve.spindle.y-val-01 75
 setp lincurve.spindle.y-val-02 100
+setp lincurve.spindle.y-val-03 100
+setp lincurve.spindle.y-val-04 100
+
 
 # lowpass
 net AI_CP-pot-spindle => lowpass.spindle.in

@@ -100,7 +100,7 @@ addf lowpass.spindle servo-thread
 
 # lincurve
 # --------
-loadrt lincurve names=lincurve.feed,lincurve.spindle personality=11,3
+loadrt lincurve names=lincurve.feed,lincurve.spindle personality=5,5
 
 addf lincurve.feed    servo-thread
 addf lincurve.spindle servo-thread
